@@ -24,8 +24,7 @@ Feature: Prueba de login en OrangeHRM
       | locator1  | locator2 | texto       |
       | username  | password | contrasena  |
       | password  | username | usuario     |
-
-
+    
   @LoginVacio
   Scenario: Intentar iniciar sesión sin ingresar Username ni Password y validar que aparezcan 2 mensajes de error "Required"
     Given el usuario deja vacio el username y el password
