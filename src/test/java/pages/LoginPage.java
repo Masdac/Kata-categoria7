@@ -43,7 +43,7 @@ public class LoginPage extends BasePage {
         Assert.assertEquals(errores.size(), 1, "Se esperaba solo un mensaje de error, pero se encontraron: " + errores.size());
 
         String mensajeActual = errores.get(0).getText();
-        System.out.println("🔹 Mensaje de error Username: " + mensajeActual);
+        System.out.println("Mensaje de error Username: " + mensajeActual);
 
         Assert.assertEquals(mensajeActual, mensajeEsperado, "El mensaje de error no coincide con el esperado.");
 
@@ -57,8 +57,8 @@ public class LoginPage extends BasePage {
         String mensajeActualUsername = errores.get(0).getText();
         String mensajeActualPassword = errores.get(1).getText();
 
-        System.out.println("🔹 Mensaje de error Username: " + mensajeActualUsername);
-        System.out.println("🔹 Mensaje de error Password: " + mensajeActualPassword);
+        System.out.println("Mensaje de error Username: " + mensajeActualUsername);
+        System.out.println("Mensaje de error Password: " + mensajeActualPassword);
 
         Assert.assertEquals(mensajeActualUsername, mensajeEsperadoUsername, "El mensaje de Username no es el esperado.");
         Assert.assertEquals(mensajeActualPassword, mensajeEsperadoPassword, "El mensaje de Password no es el esperado.");
