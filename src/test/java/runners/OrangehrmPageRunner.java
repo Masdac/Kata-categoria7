@@ -1,15 +1,14 @@
 package runners;
 
-import org.junit.platform.suite.api.ConfigurationParameter;
-import org.junit.platform.suite.api.IncludeEngines;
-import org.junit.platform.suite.api.SelectClasspathResource;
-import org.junit.platform.suite.api.Suite;
-import io.cucumber.junit.platform.engine.Constants;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
 
-@Suite
-@IncludeEngines("cucumber")
-@SelectClasspathResource("features") // Ubicación de los archivos .feature
-@ConfigurationParameter(key = Constants.PLUGIN_PROPERTY_NAME, value = "pretty, html:target/cucumber-reports.html")
-
-public class OrangehrmPageRunner {
+@CucumberOptions(
+        features = "src/test/resources/features",
+        glue = "stepdefinitions",
+        tags = "@loginOrangehrm",
+        plugin = {"pretty", "html:target/cucumber-reports.html"},
+        monochrome = true
+)
+public class OrangehrmPageRunner extends AbstractTestNGCucumberTests {
 }

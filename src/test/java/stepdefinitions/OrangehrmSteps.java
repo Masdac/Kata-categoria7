@@ -1,11 +1,11 @@
 package stepdefinitions;
 
-import hooks.Hooks;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import pages.LoginPage;
 
 public class OrangehrmSteps {
@@ -18,15 +18,30 @@ public class OrangehrmSteps {
         loginPage.ingresarUsuario(usuario);
     }
 
-    @Given("el usuario deja vacío el campo username")
-    public void dejarVacioUsername() {
+    @Given("el usuario escribe en el campo {string} el texto {string}")
+    public void escribirCampo(String usuario, String texto) {
         loginPage.abrirOrangehrm();
-        loginPage.ingresarUsuario(""); // Enviamos una cadena vacía
+        if (usuario.equals("username")) {
+            loginPage.ingresarUsuario(texto);
+        } else {
+            loginPage.ingresarPassword(texto);
+        }
     }
 
-    @Given("el usuario deja vacío el campo password")
-    public void dejarVacioPassword() {
-        loginPage.ingresarPassword(""); // Enviamos una cadena vacía
+    @Given("el usuario deja vacio el username y el password")
+    public void dejarVaciosCampos() {
+        loginPage.abrirOrangehrm();
+        loginPage.ingresarUsuario("");
+        loginPage.ingresarPassword("");
+    }
+
+    @And("escribe en el campo {string} el texto {string}")
+    public void escribirMensaje(String usuario, String texto) {
+        if (usuario.equals("username")) {
+            loginPage.ingresarUsuario(texto);
+        } else {
+            loginPage.ingresarPassword(texto);
+        }
     }
 
     @And("escribe {string} en password")
@@ -44,9 +59,14 @@ public class OrangehrmSteps {
         loginPage.verificarMensajeError(mensajeEsperado);
     }
 
-    @Then("se muestra el mensaje {string} en el campo username")
-    public void validarMensajeUsername(String mensajeEsperado) {
-        loginPage.verificarMensajeErrorUsername(mensajeEsperado);
+    @Then("se muestra 1 mensaje {string} en la pantalla")
+    public void validarMensajeError(String mensajeEsperado) {
+        loginPage.verificarMensajeRequiredUnElementoVacio(mensajeEsperado);
+    }
+
+    @Then("se muestra 2 mensajes {string} en la pantalla")
+    public void validarDosMensajeError(String mensajeEsperado) {
+        loginPage.verificarMensajeErrorDosElementosVacios(mensajeEsperado, mensajeEsperado);
     }
 
     @Then("se muestra el mensaje {string} en el campo password")
