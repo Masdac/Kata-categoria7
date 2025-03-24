@@ -21,11 +21,7 @@ public class OrangehrmSteps {
     @Given("el usuario escribe en el campo {string} el texto {string}")
     public void escribirCampo(String usuario, String texto) {
         loginPage.abrirOrangehrm();
-        if (usuario.equals("username")) {
-            loginPage.ingresarUsuario(texto);
-        } else {
-            loginPage.ingresarPassword(texto);
-        }
+        ingresarCampo(usuario, texto);
     }
 
     @Given("el usuario deja vacio el username y el password")
@@ -37,11 +33,7 @@ public class OrangehrmSteps {
 
     @And("escribe en el campo {string} el texto {string}")
     public void escribirMensaje(String usuario, String texto) {
-        if (usuario.equals("username")) {
-            loginPage.ingresarUsuario(texto);
-        } else {
-            loginPage.ingresarPassword(texto);
-        }
+        ingresarCampo(usuario, texto);
     }
 
     @And("escribe {string} en password")
@@ -77,6 +69,19 @@ public class OrangehrmSteps {
     @Then("el usuario es redirigido al dashboard")
     public void validarRedireccionDashboard() {
         loginPage.validarRedireccionDashboard();
+    }
+
+    private void ingresarCampo(String campo, String texto) {
+        switch (campo) {
+            case "username":
+                loginPage.ingresarUsuario(texto);
+                break;
+            case "password":
+                loginPage.ingresarPassword(texto);
+                break;
+            default:
+                throw new IllegalArgumentException("Campo desconocido: " + campo);
+        }
     }
 
 }

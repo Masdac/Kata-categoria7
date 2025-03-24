@@ -21,9 +21,9 @@ Feature: Prueba de login en OrangeHRM
     Then se muestra 1 mensaje "Required" en la pantalla
 
     Examples:
-      | locator1  | locator2 | texto |
-      | username  | password | algo  |
-      | password  | username | algo  |
+      | locator1  | locator2 | texto       |
+      | username  | password | contrasena  |
+      | password  | username | usuario     |
 
 
   @LoginVacio
