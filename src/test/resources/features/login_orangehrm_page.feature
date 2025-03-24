@@ -2,7 +2,7 @@
 Feature: Prueba de login en OrangeHRM
 
   @LoginIncorrecto
-  Scenario Outline: Intentar iniciar sesión con credenciales incorrectas y validar mensaje de error
+  Scenario Outline: Intentar iniciar sesión con credenciales incorrectas y validar mensaje de error "Invalid credentials"
     Given el usuario escribe "<usuario>" en username
     And escribe "<password>" en password
     When se da click al botón Login
@@ -14,7 +14,7 @@ Feature: Prueba de login en OrangeHRM
       | Admin    | 659823    |
 
   @LoginIncompleto
-  Scenario Outline: Intentar iniciar sesión sin ingresar Username o Password y validar mensaje de error
+  Scenario Outline: Intentar iniciar sesión sin ingresar Username o Password y validar que solo aparezca un mensaje de error "Required"
     Given el usuario escribe en el campo "<locator1>" el texto ""
     And escribe en el campo "<locator2>" el texto "<texto>"
     When se da click al botón Login
@@ -27,7 +27,7 @@ Feature: Prueba de login en OrangeHRM
 
 
   @LoginVacio
-  Scenario: Intentar iniciar sesión sin ingresar Username ni Password y validar mensaje de error
+  Scenario: Intentar iniciar sesión sin ingresar Username ni Password y validar que aparezcan 2 mensajes de error "Required"
     Given el usuario deja vacio el username y el password
     When se da click al botón Login
     Then se muestra 2 mensajes "Required" en la pantalla
