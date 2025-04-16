@@ -37,3 +37,4 @@ Feature: Prueba de login en OrangeHRM
     And escribe "admin123" en password
     When se da click al botón Login
     Then el usuario es redirigido al dashboard
+  @LoginIncorrecto
